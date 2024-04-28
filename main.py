@@ -5,6 +5,9 @@ import pygame
 
 from scripts.utils import load_image
 
+# 58
+threashold = -29
+
 pygame.init()
 
 def calculate_loudness(data):
@@ -56,9 +59,9 @@ class PNGtuber():
                 sd.wait()
 
                 # Calculate loudness
-                loudness = int(calculate_loudness(audio.flatten()) * -1)
-                print(f"Loudness: {loudness}")
-                if loudness < 58:
+                loudness = int(calculate_loudness(audio.flatten()))
+                print(f"Mic Volume: {loudness}db")
+                if loudness > threashold:
                     self.talking = True
                 else:
                     self.talking = False
